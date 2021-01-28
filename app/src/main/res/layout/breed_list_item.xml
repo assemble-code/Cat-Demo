@@ -18,6 +18,7 @@
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginRight="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_4"
         android:elevation="@dimen/dp_4"
         app:cardBackgroundColor="@color/cardview_dark_background"
         app:cardCornerRadius="@dimen/dp_8">
@@ -46,13 +47,41 @@
                 android:id="@+id/tvBreedName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{breedData.name}"
+                android:text="@{`Breed : `+breedData.name}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toEndOf="@id/cvTempHolder"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/tvCountryOfOrigin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="@{`Country : `+breedData.origin}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toEndOf="@id/cvTempHolder"
+                app:layout_constraintTop_toBottomOf="@id/tvBreedName"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/tvWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="@{`Weight : `+breedData.weight.metric+` KG`}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toEndOf="@id/cvTempHolder"
+                app:layout_constraintTop_toBottomOf="@id/tvCountryOfOrigin"
                 tools:text="@tools:sample/full_names" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
