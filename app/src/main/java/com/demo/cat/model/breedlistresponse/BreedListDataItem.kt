@@ -1,10 +1,13 @@
 package com.demo.cat.model.breedlistresponse
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 data class BreedListDataItem(
     @Json(name = "weight")
     val weight: Weight?,
@@ -82,4 +85,4 @@ data class BreedListDataItem(
     val referenceImageId: String?,
     @Json(name = "image")
     val image: Image?
-)
+):Parcelable

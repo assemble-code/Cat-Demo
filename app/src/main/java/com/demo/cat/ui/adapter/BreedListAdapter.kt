@@ -1,7 +1,6 @@
 package com.demo.cat.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,7 @@ import com.demo.cat.databinding.BreedListItemBinding
 import com.demo.cat.model.breedlistresponse.BreedListDataItem
 import kotlinx.android.synthetic.main.breed_list_item.view.*
 
-class BreedListAdapter(private val data: List<BreedListDataItem>) :
+class BreedListAdapter(private val data: List<BreedListDataItem>,private val listener: BreedListViewHolder.onItemClick) :
     RecyclerView.Adapter<BreedListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -26,7 +25,7 @@ class BreedListAdapter(private val data: List<BreedListDataItem>) :
 
     override fun onBindViewHolder(holder: BreedListViewHolder, position: Int) {
         val breedData = data[holder.adapterPosition]
-        holder.setBreedData(breedData)
+        holder.setBreedData(breedData,listener)
     }
 
     override fun getItemCount(): Int {
@@ -37,9 +36,19 @@ class BreedListAdapter(private val data: List<BreedListDataItem>) :
 class BreedListViewHolder(private val itemViewBinding: BreedListItemBinding) :
     RecyclerView.ViewHolder(itemViewBinding.root) {
 
-    fun setBreedData(breedListDataItem: BreedListDataItem) {
+    fun setBreedData(breedListDataItem: BreedListDataItem, listener: onItemClick) {
         itemViewBinding.breedData = breedListDataItem
         itemView.ivCatImage.load(breedListDataItem.image?.url)
+
+        itemView.setOnClickListener{
+            listener.onCatBreedItemClick(breedListDataItem)
+        }
+    }
+
+
+
+    interface onItemClick{
+      fun onCatBreedItemClick(breedListDataItem: BreedListDataItem)
     }
 
 }
