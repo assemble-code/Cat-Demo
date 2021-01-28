@@ -19,15 +19,17 @@ class CatBreedViewModel : ViewModel() {
     private val ioDispatcher = Dispatchers.IO
     private val mainDispatcher = Dispatchers.Main
     private val breedListDataMutableLiveData = MutableLiveData<ResponseBaseClass>()
-
+    private val isLoading = MutableLiveData<Boolean>()
     fun getBreedListLiveData():MutableLiveData<ResponseBaseClass>{
         return  breedListDataMutableLiveData
     }
-
-    fun getCatBreed(pageNumber: Int, limit: Int = 10) {
+    fun getIsLoading():MutableLiveData<Boolean>{
+        return  isLoading
+    }
+    fun getCatBreed(pageNumber: Int, limit: Int = 100) {
+        isLoading.value = true;
         viewModelScope.launch {
             lateinit var response: ResponseBaseClass
-            lateinit var breedDataArray: JSONArray
             withContext(ioDispatcher) {
                 response =
                     catApi.getBreedList("${Constants.baseURL}/breeds?limit=$limit&page=$pageNumber")
@@ -36,6 +38,7 @@ class CatBreedViewModel : ViewModel() {
             withContext(mainDispatcher) {
 
                 breedListDataMutableLiveData.value = response
+                isLoading.value = false
             }
 
 

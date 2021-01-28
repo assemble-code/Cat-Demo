@@ -3,11 +3,13 @@ package com.demo.cat.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.demo.cat.R
 import com.demo.cat.model.breedlistresponse.BreedListDataItem
+import com.demo.cat.network.HttpNetwork
 import com.demo.cat.ui.adapter.BreedListAdapter
 import com.demo.cat.ui.adapter.BreedListViewHolder
 import com.demo.cat.viewmodel.CatBreedViewModel
@@ -20,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), BreedListViewHolder.onItemClick {
     private lateinit var catBreedViewModel: CatBreedViewModel
     private var pageNumber = 0
-    private var limit = 0
     private lateinit var breedListAdapter: BreedListAdapter
     val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,15 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.onItemClick {
 
         catBreedViewModel = ViewModelProviders.of(this).get(CatBreedViewModel::class.java)
         //load the initial data
-        catBreedViewModel.getCatBreed(pageNumber)
+        if (HttpNetwork.isNetworkConnected(this)) {
+            catBreedViewModel.getCatBreed(pageNumber)
+        } else {
+            Toast.makeText(
+                this,
+                getString(R.string.please_check_your_internet_connection),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
         initObserver()
     }
@@ -56,6 +65,13 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.onItemClick {
             }
         }
         )
+
+
+        catBreedViewModel.getIsLoading().observe(this, Observer { isLoading->
+
+            progress.visibility =  if(isLoading) View.VISIBLE else View.GONE
+
+        })
     }
 
     override fun onCatBreedItemClick(breedListDataItem: BreedListDataItem) {

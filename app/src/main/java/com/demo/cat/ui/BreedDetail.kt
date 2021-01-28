@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.demo.cat.R
 import com.demo.cat.databinding.ActivityBreedDetailBinding
-import com.demo.cat.databinding.ActivityBreedDetailBindingImpl
-import com.demo.cat.databinding.BreedListItemBinding
 import com.demo.cat.model.breedlistresponse.BreedListDataItem
 
 class BreedDetail : AppCompatActivity() {
