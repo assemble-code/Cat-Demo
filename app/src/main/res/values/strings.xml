@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cat Demo</string>
+    <string name="cat_breeds">Cat Breeds</string>
 </resources>
