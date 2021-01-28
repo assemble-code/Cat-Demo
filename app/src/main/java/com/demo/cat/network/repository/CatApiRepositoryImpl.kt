@@ -4,7 +4,7 @@ import com.demo.cat.model.ResponseBaseClass
 import com.demo.cat.network.CatApi
 import com.demo.cat.network.HttpNetwork
 
-class CatApiImplementation : CatApi {
+class CatApiRepositoryImpl : CatApi {
 
     override suspend fun getBreedList(url: String): ResponseBaseClass {
 

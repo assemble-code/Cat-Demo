@@ -19,7 +19,7 @@ import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BreedListViewHolder.onItemClick {
+class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
     private lateinit var catBreedViewModel: CatBreedViewModel
     private var pageNumber = 0
     private lateinit var breedListAdapter: BreedListAdapter

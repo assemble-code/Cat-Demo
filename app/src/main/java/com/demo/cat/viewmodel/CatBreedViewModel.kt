@@ -5,17 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.cat.model.ResponseBaseClass
 import com.demo.cat.network.CatApi
-import com.demo.cat.network.repository.CatApiImplementation
+import com.demo.cat.network.repository.CatApiRepositoryImpl
 import com.demo.cat.util.Constants
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONArray
 
 class CatBreedViewModel : ViewModel() {
-    private val catApi: CatApi = CatApiImplementation()
+    private val catApi: CatApi = CatApiRepositoryImpl()
     private val ioDispatcher = Dispatchers.IO
     private val mainDispatcher = Dispatchers.Main
     private val breedListDataMutableLiveData = MutableLiveData<ResponseBaseClass>()

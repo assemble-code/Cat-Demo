@@ -1,5 +1,5 @@
 package com.demo.cat.util
 
  object Constants {
-     val baseURL="https://api.thecatapi.com/v1"
+   const  val baseURL="https://api.thecatapi.com/v1"
 }

@@ -22,7 +22,9 @@ object HttpNetwork {
             val inStream: InputStream = BufferedInputStream(urlConnection.inputStream)
             ResponseBaseClass(urlConnection.responseCode, readStream(inStream))
         } catch (exception: Exception) {
-            ResponseBaseClass(urlConnection.responseCode, null) //return black in case of exception
+            //return error and no data
+            // further improvement can be made by including error code as well
+            ResponseBaseClass(-1, null)
         } finally {
             urlConnection.disconnect()
         }
@@ -41,7 +43,7 @@ object HttpNetwork {
     /**
      * check if the device has active internet connection
      * **/
-     fun isNetworkConnected(context: Context): Boolean {
+    fun isNetworkConnected(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         return cm!!.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
     }
