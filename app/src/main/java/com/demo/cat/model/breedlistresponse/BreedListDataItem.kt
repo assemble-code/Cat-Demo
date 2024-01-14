@@ -4,7 +4,7 @@ package com.demo.cat.model.breedlistresponse
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -84,5 +84,5 @@ data class BreedListDataItem(
     @Json(name = "reference_image_id")
     val referenceImageId: String?,
     @Json(name = "image")
-    val image: Image?
+    var image: Image?
 ):Parcelable

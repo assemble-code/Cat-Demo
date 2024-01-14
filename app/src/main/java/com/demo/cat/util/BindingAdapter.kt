@@ -15,7 +15,6 @@ class BindingAdapter {
                     view.load(this) {
                         placeholder(placeholderDrawable)
                         error(placeholderDrawable)
-
                     }
                 }
             } ?: kotlin.run {
