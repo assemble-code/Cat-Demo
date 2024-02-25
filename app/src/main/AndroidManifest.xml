@@ -14,8 +14,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CatDemo">
-        <activity android:exported="false" android:name=".ui.BreedDetail" android:screenOrientation="portrait"/>
-        <activity android:exported="true" android:name=".ui.MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".ui.SignUp"
+            android:exported="false" />
+        <!--        <activity-->
+        <!--            android:name=".ui.LoginActivity"-->
+        <!--            android:exported="false" />-->
+        <activity
+            android:name=".ui.BreedDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

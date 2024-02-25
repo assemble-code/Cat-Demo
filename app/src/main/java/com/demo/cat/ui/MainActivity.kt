@@ -3,9 +3,11 @@ package com.demo.cat.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
@@ -26,13 +28,15 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
     private var pageNumber = 0
     private lateinit var breedListAdapter: BreedListAdapter
     val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-    lateinit var rvBreedList:RecyclerView
-   lateinit var progress:ProgressBar
+    lateinit var rvBreedList: RecyclerView
+    lateinit var progress: ProgressBar
+    lateinit var search: SearchView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-         rvBreedList = findViewById(R.id.rvBreedList)
-         progress = findViewById(R.id.progress)
+        rvBreedList = findViewById(R.id.rvBreedList)
+        progress = findViewById(R.id.progress)
+        search = findViewById(R.id.etSearch)
         catBreedViewModel = ViewModelProviders.of(this).get(CatBreedViewModel::class.java)
         //load the initial data
         if (HttpNetwork.isNetworkConnected(this)) {
@@ -46,6 +50,24 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
         }
 
         initObserver()
+
+
+        search.setOnQueryTextListener(object:androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+               return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+
+                Log.d(this::class.java.toString(),"Searching for Character $p0")
+
+                return true
+            }
+
+
+        })
+
+
     }
 
     private fun initObserver() {
@@ -72,9 +94,9 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
         )
 
 
-        catBreedViewModel.getIsLoading().observe(this, Observer { isLoading->
+        catBreedViewModel.getIsLoading().observe(this, Observer { isLoading ->
 
-            progress.visibility =  if(isLoading) View.VISIBLE else View.GONE
+            progress.visibility = if (isLoading) View.VISIBLE else View.GONE
 
         })
     }

@@ -4,4 +4,11 @@
     <string name="unable_to_load_data">Unable to load data</string>
     <string name="breed_detail">Breed Detail</string>
     <string name="please_check_your_internet_connection">Please check your internet connection</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="signup">SignUp</string>
+    <string name="login">Login</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="signin">SignIn</string>
+    <string name="create_account">Create Account</string>
 </resources>
