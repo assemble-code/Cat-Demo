@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
         initObserver()
 
 
-        search.setOnQueryTextListener(object:androidx.appcompat.widget.SearchView.OnQueryTextListener{
+        search.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
                return true
             }
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
             override fun onQueryTextChange(p0: String?): Boolean {
 
                 Log.d(this::class.java.toString(),"Searching for Character $p0")
-
+                breedListAdapter.filter.filter(p0)
                 return true
             }
 
