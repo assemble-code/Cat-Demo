@@ -47,8 +47,6 @@ class BreedListAdapter(
         }
         return catListFilter
     }
-
-
     inner class CatListFilter : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val filterResult = FilterResults()
@@ -56,16 +54,11 @@ class BreedListAdapter(
             constraint?.let {
                 if (it.isNotEmpty()) {
                     val filterList: MutableList<BreedListDataItem> = ArrayList()
-                    for (i in dataFilter.indices) {
-                        if (dataFilter[i].name?.contains(
-                                constraint.toString(),
-                                true
-                            ) == true || dataFilter[i].origin?.contains(
-                                constraint.toString(),
-                                true
-                            ) == true
+                    for (cat in dataFilter) {
+                        if (cat.name?.contains(constraint.toString(), true) == true ||
+                            cat.origin?.contains(constraint.toString(), true) == true
                         ) {
-                            filterList.add(dataFilter[i])
+                            filterList.add(cat)
                         }
                     }
                     filterResult.count = filterList.size

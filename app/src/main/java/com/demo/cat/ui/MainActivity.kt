@@ -52,15 +52,13 @@ class MainActivity : AppCompatActivity(), BreedListViewHolder.OnItemClick {
         initObserver()
 
 
-        search.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-               return true
+                return true
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-
-                Log.d(this::class.java.toString(),"Searching for Character $p0")
-                breedListAdapter.filter.filter(p0)
+            override fun onQueryTextChange(searchString: String?): Boolean {
+                breedListAdapter.filter.filter(searchString)
                 return true
             }
 
